@@ -1,6 +1,7 @@
 
 import './App.css';
 import { Component } from 'react';
+import {CardList} from './components/card-list/card-list.component'
 
 class App extends Component{
 
@@ -23,11 +24,7 @@ class App extends Component{
         <header className="App-header">
 
           <h1>Monster Rolodex</h1>
-
-          
-      {
-        this.state.monsters.map(monster=> <h1 key={monster.id}>{monster.name}</h1>)
-      }
+        <CardList monster={this.state.monsters}/>
 
         </header>
       </div>
