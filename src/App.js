@@ -1,14 +1,15 @@
 
 import './App.css';
 import { Component } from 'react';
-import {CardList} from './components/card-list/card-list.component'
-
+import {CardList} from './components/card-list/card-list.component';
+import {SearchBox} from './components/searchbox/searchbox.component';
 class App extends Component{
 
   constructor(){
     super();
     this.state={
-      monsters:[ ]
+      monsters:[ ],
+      searhcfiledtxt:''
     };
   }
 
@@ -19,12 +20,21 @@ class App extends Component{
   }
   render(){
 
+    const {monsters,searhcfiledtxt}=this.state;
+
+    const filterdmonsters= monsters.filter(monsters=> monsters.name.toLowerCase().includes(searhcfiledtxt.toLocaleLowerCase()));
+
     return (
       <div className="App">
         <header className="App-header">
+        
 
           <h1>Monster Rolodex</h1>
-        <CardList monster={this.state.monsters}/>
+
+          <SearchBox placeholder="search" handleChange={e => {this.setState({searhcfiledtxt:e.target.value})}} />
+   
+
+        <CardList monster={filterdmonsters}/>
 
         </header>
       </div>
